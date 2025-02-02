@@ -1,0 +1,5 @@
+.sort({data: -1}) // Aqui você está definindo a ordem em que seus contatos irão vim do banco de dados, sendo decrescente (-1) e crescente (1).
+
+static async EditContact(id){
+        const contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true})
+    }

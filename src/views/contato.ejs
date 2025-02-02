@@ -1,0 +1,45 @@
+<%- include('includes/header'); %>
+<%- include('includes/nav'); %>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 my-5">
+            <h1 class="text-center">Agenda</h1>
+            <p class="text-center lead">Cadastre um contato preenchendo as informações abaixo.</p>
+            
+            <%- include('includes/messages'); %>
+
+            <% if(contato._id){%>
+                <form action="/contato/edit/<%= contato._id %>" method="POST" id="form">
+            <% } else { %>
+                <form action="/contato/register" method="POST" id="form">
+            <%}%>
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nome:</label>
+                    <input value="<%= formData.nome ? formData.nome : contato.nome %>" type="text" class="form-control" name="nome">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Sobrenome:</label>
+                    <input value="<%= formData.sobrenome ? formData.sobrenome :  contato.sobrenome %>" type="text" class="form-control" name="sobrenome">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">E-mail</label>
+                    <input value="<%= formData.email ? formData.email :  contato.email %>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Telefone</label>
+                    <input value="<%= formData.telefone ? formData.telefone :  contato.telefone %>" type="text" class="form-control" name="telefone">
+                </div>
+                <button type="submit" class="btn btn-primary my-2">Cadastrar</button>
+              </form>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include('includes/footer'); %>
